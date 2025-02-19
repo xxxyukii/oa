@@ -121,4 +121,7 @@ public interface ISysDeptService {
      * @return 结果
      */
     public int deleteDeptById(Long deptId);
+
+    //查询部门员工树结构
+    public List<TreeSelect> selectDeptUserTreeList(Long deptId);
 }

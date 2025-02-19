@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Validator;
@@ -457,15 +458,16 @@ public class SysUserServiceImpl implements ISysUserService {
                 // 验证是否存在这个用户
                 SysUser u = userMapper.selectUserByUserName(user.getUserName());
                 if (StringUtils.isNull(u)) {
-                    BeanValidators.validateWithException(validator, user);
-                    deptService.checkDeptDataScope(user.getDeptId());
+                    //xx新用户导入
+                    BeanValidators.validateWithException(validator, user); //验证用户数据格式
+                    deptService.checkDeptDataScope(user.getDeptId());//检查部门权限范围
                     String password = configService.selectConfigByKey("sys.user.initPassword");
                     user.setPassword(SecurityUtils.encryptPassword(password));
                     user.setCreateBy(operName);
                     userMapper.insertUser(user);
                     successNum++;
                     successMsg.append("<br/>" + successNum + "、账号 " + user.getUserName() + " 导入成功");
-                } else if (isUpdateSupport) {
+                } else if (isUpdateSupport) { //如果用户已存在且 isUpdateSupport 为 true
                     BeanValidators.validateWithException(validator, user);
                     checkUserAllowed(u);
                     checkUserDataScope(u.getUserId());
@@ -494,4 +496,17 @@ public class SysUserServiceImpl implements ISysUserService {
         }
         return successMsg.toString();
     }
+
+    @Override
+    public List<SysUser> getEmpByDeptId(Long deptId, String query) {
+        List<SysUser> likeUserList = userMapper.getEmpByDeptId(deptId,query);
+        return likeUserList;
+    }
+
+    @Override
+    public List<SysUser> getUserInfo(String userName) {
+//        List<SysUser> userInfo = userMapper.getUserInfo(userName);
+        return userMapper.getUserInfo(userName);
+    }
+
 }

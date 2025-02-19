@@ -58,7 +58,18 @@ public class SysRoleServiceImpl implements ISysRoleService {
     }
 
     /**
-     * 根据用户ID查询角色
+     * 根据用户id查询role角色 用于考勤展示用
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Long> selectRoleByUserId(Long userId){
+        return roleMapper.selectRoleListByUserId(userId);
+    }
+
+
+    /**
+     * 根据用户ID查询角色 xx 存储角色
      *
      * @param userId 用户ID
      * @return 角色列表

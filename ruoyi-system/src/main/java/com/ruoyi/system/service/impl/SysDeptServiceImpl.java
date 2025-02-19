@@ -1,10 +1,12 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ruoyi.system.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.annotation.DataScope;
@@ -34,6 +36,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
 
     @Autowired
     private SysRoleMapper roleMapper;
+
+    @Autowired
+    private SysUserMapper userMapper;
 
     /**
      * 查询部门管理数据
@@ -91,6 +96,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @Override
     public List<TreeSelect> buildDeptTreeSelect(List<SysDept> depts) {
         List<SysDept> deptTrees = buildDeptTree(depts);
+        //xx 这是？ (TreeSelect::new)
         return deptTrees.stream().map(TreeSelect::new).collect(Collectors.toList());
     }
 
@@ -264,6 +270,41 @@ public class SysDeptServiceImpl implements ISysDeptService {
     @Override
     public int deleteDeptById(Long deptId) {
         return deptMapper.deleteDeptById(deptId);
+    }
+
+    //xx 会议预约- 参会人 -部门员工树
+    @Override
+    public List<TreeSelect> selectDeptUserTreeList(Long deptId) {
+
+        // 获取部门的子部门
+        List<SysDept> subDepts = deptMapper.selectSubDeptByParentId(deptId);
+
+        List<TreeSelect> treeSelectList = new ArrayList<>();
+        // 遍历每个子部门
+        for (SysDept subDept : subDepts) {
+            TreeSelect treeSelect = new TreeSelect();
+            treeSelect.setId(subDept.getDeptId());
+            treeSelect.setLabel(subDept.getDeptName());
+            treeSelect.setIsLeaf(false); // 设置为非叶子节点，可以展开，有子节点
+            treeSelect.setType(1);
+            treeSelect.setKey(1 + "_" + subDept.getDeptId());
+            treeSelectList.add(treeSelect);
+
+        }
+
+        // 获取该部门的所属员工
+        List<SysUser> users = userMapper.selectUserByDeptId(deptId);
+        for (SysUser user : users) {
+            TreeSelect treeSelectUser = new TreeSelect();
+            treeSelectUser.setId(user.getUserId());
+            treeSelectUser.setLabel(user.getUserName());
+            treeSelectUser.setIsLeaf(true); // 员工是叶子节点
+            treeSelectUser.setType(2);
+            treeSelectUser.setKey(2 + "_" + user.getUserId());
+            treeSelectList.add(treeSelectUser);
+        }
+
+        return treeSelectList;
     }
 
     /**

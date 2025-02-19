@@ -37,6 +37,10 @@ logging:
     com.ruoyi: debug
     org.springframework: warn
 
+file:
+  upload-dir: D:\ruoyi\uploads\
+
+
 # 用户配置
 user:
   password:

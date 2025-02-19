@@ -26,6 +26,32 @@ public class TreeSelect implements Serializable {
      */
     private String label;
 
+    private Boolean isLeaf; //xx后面是否还有子节点 true 没有子部门或者员工了
+
+    private Integer type;
+
+    private String key;
+
+    public Boolean getIsLeaf() {return this.isLeaf;}
+
+    public void setIsLeaf(Boolean isLeaf) {this.isLeaf = isLeaf;}
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     /**
      * 子节点
      */

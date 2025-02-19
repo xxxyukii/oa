@@ -29,6 +29,12 @@ public interface ISysRoleService {
     public List<SysRole> selectRolesByUserId(Long userId);
 
     /**
+     * 根据用户id查询role角色 用于考勤展示用
+     * @param userId
+     * @return
+     */
+    public List<Long> selectRoleByUserId(Long userId);
+    /**
      * 根据用户ID查询角色权限
      *
      * @param userId 用户ID

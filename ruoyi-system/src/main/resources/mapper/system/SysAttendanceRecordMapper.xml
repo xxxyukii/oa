@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysAttendanceRecordMapper">
+
+
+    <!--    实时记录表-->
+    <resultMap type="SysAttendanceRecord" id="SysAttendanceRecordResult">
+        <id property="recordId" column="record_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="checkDate" column="check_date"/>
+        <result property="checkTime" column="check_time"/>
+        <result property="remark" column="remark"/>
+        <result property="amTime" column="am_time"/>
+        <result property="pmTime" column="pm_time"/>
+        <result property="count" column="count"/>
+
+    </resultMap>
+
+    <!--    当日记录表-->
+    <resultMap type="SysAttendance" id="SysAttendanceResult">
+        <id property="attId" column="att_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="attendanceDate" column="attendance_date"/>
+        <result property="amTime" column="am_time"/>
+        <result property="pmTime" column="pm_time"/>
+        <result property="remark" column="remark"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="workId" column="work_id"/>
+
+
+        <!--        -->
+        <!--        <association property="sysAttendanceRecord" javaType="SysAttendanceRecord">-->
+        <!--            <id property="userId" column="user_id"/>-->
+        <!--        </association>-->
+
+    </resultMap>
+
+    <!--    员工表-->
+    <resultMap type="SysUser" id="SysUserResult">
+        <id property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="email" column="email"/>
+        <result property="phonenumber" column="phonenumber"/>
+        <result property="sex" column="sex"/>
+        <result property="avatar" column="avatar"/>
+        <result property="password" column="password"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="loginIp" column="login_ip"/>
+        <result property="loginDate" column="login_date"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="workId" column="work_id"/>
+        <result property="address" column="address"/>
+        <result property="birthday" column="birthday"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+
+        <association property="sysAttendanceRecord" javaType="SysAttendanceRecord"
+                     resultMap="SysAttendanceRecordResult"/>
+
+
+    </resultMap>
+
+    <sql id="selectAttendanceVo">
+        SELECT a.att_id,
+               a.user_name,
+               a.attendance_date,
+               a.am_time,
+               a.pm_time,
+               a.remark,
+               d.dept_name,
+               u.work_id
+        FROM sys_attendance a
+                 JOIN sys_dept d ON a.dept_id = d.dept_id
+                 JOIN sys_user u ON a.user_id = u.user_id;
+    </sql>
+
+    <insert id="insertRecord">
+        insert into sys_attendance_record(record_id, user_id, check_date, check_time, remark)
+        values (#{recordId}, #{userId}, #{checkDate}, #{checkTime}, #{remark})
+
+    </insert>
+    <insert id="insertAttendance">
+        insert into sys_attendance(att_id, user_id, user_name, dept_id, am_time, pm_time, remark, attendance_date)
+        values (#{attId}, #{userId}, #{userName}, #{deptId}, #{amTime}, #{pmTime}, #{remark}, #{attendanceDate})
+    </insert>
+
+    <update id="updateAttendance" parameterType="SysAttendance" >
+        UPDATE sys_attendance
+        <set>
+            <if test="amTime != null">am_time = #{amTime},</if>
+            <if test="pmTime != null">pm_time = #{pmTime},</if>
+            remark= #{remark}
+        </set>
+
+        WHERE att_id = #{attId};
+    </update>
+
+
+    <select id="getAttendanceList" resultType="java.util.Map">
+        SELECT u.user_name,
+               u.user_id,
+               u.dept_id,
+               t.count,
+               t.am_time,
+               t.pm_time,
+               d.dept_name
+        FROM sys_user u
+                 LEFT JOIN (SELECT user_id,
+                                   COUNT(check_time) count,
+        MIN( check_time ) AS am_time,
+        MAX( check_time ) AS pm_time
+                            FROM
+                                sys_attendance_record
+                            WHERE check_time &gt;=#{dateStart}
+                              AND check_time &lt;=#{dateEnd}
+                            GROUP BY
+                                user_id) t ON u.user_id = t.user_id
+                 LEFT JOIN sys_dept d
+                           ON u.dept_id = d.dept_id
+    </select>
+    <!--    获取考勤记录表-->
+    <select id="getAllAttendance" resultMap="SysAttendanceResult">
+        SELECT a.*, d.dept_name, u.work_id
+        FROM sys_attendance a
+        LEFT JOIN sys_dept d ON a.dept_id = d.dept_id
+        LEFT JOIN sys_user u ON a.user_id = u.user_id
+        <where>
+            <if test="attId != null and attId != ''">
+                AND a.att_id = #{attId}
+            </if>
+            <if test="deptId != null and deptId != ''">
+                AND a.dept_id = #{deptId}
+            </if>
+            <if test="userName != null and userName != ''">
+                AND a.user_name like concat('%', #{userName}, '%')
+            </if>
+            <if test="workId != null and workId != ''">
+                AND u.work_id like concat('%', #{workId}, '%')
+            </if>
+            <if test="beginTime != null"><!-- 开始时间检索 -->
+                AND a.attendance_date &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null"><!-- 结束时间检索 -->
+                AND a.attendance_date &lt;= #{endTime}
+            </if>
+        </where>
+
+    </select>
+    <select id="getAttendanceByUserId" resultMap="SysAttendanceResult">
+        SELECT a.*, d.dept_name, u.work_id
+        FROM sys_attendance a
+                 LEFT JOIN sys_dept d ON a.dept_id = d.dept_id
+                 LEFT JOIN sys_user u ON a.user_id = u.user_id
+        WHERE u.user_id = #{userId}
+    </select>
+
+    <!--    根据考勤attId获取详细信息-->
+    <select id="selectAttendanceById" resultMap="SysAttendanceResult">
+        SELECT
+            a.att_id,a.user_name,a.attendance_date,a.am_time,a.pm_time,a.remark,
+            d.dept_name,
+            u.work_id
+        FROM
+            sys_attendance a
+                JOIN sys_dept d ON a.dept_id = d.dept_id
+                JOIN sys_user u ON a.user_id = u.user_id
+        WHERE a.att_id = #{attId}
+    </select>
+
+    <!--    根据工号workId获取信息-->
+    <select id="selectAttendanceByWorkId" resultMap="SysAttendanceResult">
+        SELECT
+            a.att_id,a.user_name,a.attendance_date,a.am_time,a.pm_time,a.remark,
+            d.dept_name,
+            u.work_id
+        FROM
+            sys_attendance a
+                JOIN sys_dept d ON a.dept_id = d.dept_id
+                JOIN sys_user u ON a.user_id = u.user_id
+        WHERE u.work_id = #{workId}
+    </select>
+
+    <!--    根据考勤日期获取信息-->
+    <select id="selectAttendanceByDate" resultMap="SysAttendanceResult">
+        SELECT
+            a.att_id,a.user_name,a.attendance_date,a.am_time,a.pm_time,a.remark,
+            d.dept_name,
+            u.work_id
+        FROM
+            sys_attendance a
+                JOIN sys_dept d ON a.dept_id = d.dept_id
+                JOIN sys_user u ON a.user_id = u.user_id
+        WHERE a.attendance_date = #{attendanceDate}
+
+    </select>
+
+
+</mapper>

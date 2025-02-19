@@ -23,7 +23,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -62,7 +66,7 @@ public class SysUserController extends BaseController {
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         util.exportExcel(response, list, "用户数据");
     }
 
@@ -100,19 +104,34 @@ public class SysUserController extends BaseController {
             ajax.put("postIds", postService.selectPostListByUserId(userId));
             ajax.put("roleIds", sysUser.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toList()));
         }
+
+
         return ajax;
     }
+
+
+    /**
+     * xxx 根据输入的值查询员工信息
+     */
+    @GetMapping(value = "/getempbydeptid")
+    public AjaxResult getEmpByDeptId(@RequestParam("deptId") Long deptId, @RequestParam("query") String query) {
+
+        List<SysUser> likeUserList = userService.getEmpByDeptId(deptId, query);
+        return AjaxResult.success(likeUserList);
+    }
+
 
     /**
      * 新增用户
      */
+//    todo xxx新增
     @PreAuthorize("@ss.hasPermi('system:user:add')")
     @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysUser user) {
-        deptService.checkDeptDataScope(user.getDeptId());
-        roleService.checkRoleDataScope(user.getRoleIds());
-        if (!userService.checkUserNameUnique(user)) {
+        deptService.checkDeptDataScope(user.getDeptId());//校验部门是否有数据权限
+        roleService.checkRoleDataScope(user.getRoleIds());//校验角色是否有数据权限
+        if (!userService.checkUserNameUnique(user)) {//校验用户名称是否唯一
             return error("新增用户'" + user.getUserName() + "'失败，登录账号已存在");
         } else if (StringUtils.isNotEmpty(user.getPhonenumber()) && !userService.checkPhoneUnique(user)) {
             return error("新增用户'" + user.getUserName() + "'失败，手机号码已存在");
@@ -127,10 +146,12 @@ public class SysUserController extends BaseController {
     /**
      * 修改用户
      */
+    //todo xxx 11.6 am 新增用户的时候用同时更改角色管理等？
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysUser user) {
+        System.out.println(user);
         userService.checkUserAllowed(user);
         userService.checkUserDataScope(user.getUserId());
         deptService.checkDeptDataScope(user.getDeptId());
@@ -214,11 +235,61 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 获取部门树列表
+     * xx获取部门树列表
      */
     @PreAuthorize("@ss.hasPermi('system:user:list')")
     @GetMapping("/deptTree")
     public AjaxResult deptTree(SysDept dept) {
         return success(deptService.selectDeptTreeList(dept));
+    }
+
+    /**
+     * xx获取员工姓名（资产所属人/资产管理人） 工号
+     */
+    @GetMapping("/userInfo/{userName}")
+    public AjaxResult getUserInfo(@PathVariable("userName") String userName) {
+        if (userName.equals("")) {
+            //todo
+            return success(new ArrayList<>());
+        }
+        //todo
+
+        List<Map<String, Object>> result = new ArrayList<>(); //新建空数组
+        List<SysUser> userInfoList = userService.getUserInfo(userName);//获取模糊查询到的用户信息
+
+        for (SysUser sysUser : userInfoList) { //遍历查询到的用户信息
+            Map<String, Object> map = new HashMap<>(); //新建一个空对象
+            map.put("value", sysUser.getUserName());
+            map.put("userId", sysUser.getUserId());
+            map.put("workId", sysUser.getWorkId());
+            map.put("deptName", sysUser.getDeptName());
+
+            result.add(map);
+        }
+        //todo 同上 不同方式 stream map 方式
+        List<Map<String, Object>> collect = userInfoList.stream().map(e -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("value", e.getUserName());
+            map.put("userId", e.getUserId());
+            map.put("workId", e.getWorkId());
+            map.put("deptName", e.getDeptName());
+            return map;
+        }).collect(Collectors.toList());
+        //todo map 想实现接口必须实现唯一没有被实现的方法
+        Function<SysUser, Map<String,Object>> function = new Function<SysUser, Map<String,Object>>() {
+            @Override
+            public Map<String,Object> apply(SysUser sysUser) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("value", sysUser.getUserName());
+                map.put("userId", sysUser.getUserId());
+                map.put("workId", sysUser.getWorkId());
+                map.put("deptName", sysUser.getDeptName());
+                return map;
+            }
+        };
+
+        userInfoList.stream().map(function).collect(Collectors.toList());
+
+        return success(result);
     }
 }

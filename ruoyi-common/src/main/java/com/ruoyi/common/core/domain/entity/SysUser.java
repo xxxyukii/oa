@@ -6,6 +6,7 @@ import com.ruoyi.common.annotation.Excel.Type;
 import com.ruoyi.common.annotation.Excels;
 import com.ruoyi.common.core.domain.BaseEntity;
 import com.ruoyi.common.xss.Xss;
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -20,12 +21,19 @@ import java.util.List;
  *
  * @author ruoyi
  */
+@Data
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
+
+    private String deptName;
+//    @ManyToMany(mappedBy = "users")
+    private List<MeetingBooking>meetings;  // 用户参加的会议列表
 
     /**
      * 用户ID
      */
+
+    //todo 通常用于Java中的导出Excel表格时给表格的列添加一些元数据
     @Excel(name = "用户序号", type = Type.EXPORT, cellType = ColumnType.NUMERIC, prompt = "用户编号")
     private Long userId;
 
@@ -56,13 +64,13 @@ public class SysUser extends BaseEntity {
     /**
      * 手机号码
      */
-    @Excel(name = "手机号码", cellType = ColumnType.TEXT)
+    @Excel(name = "手机号码", cellType = ColumnType.TEXT,sort = 1)
     private String phonenumber;
 
     /**
      * 用户性别
      */
-    @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
+    @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知",sort = 2)
     private String sex;
 
     /**
@@ -126,6 +134,91 @@ public class SysUser extends BaseEntity {
      * 角色ID
      */
     private Long roleId;
+
+
+
+    /**
+     * xxx 工号
+     */
+    @Excel(name = "工号Id")
+    private String workId;
+
+    public String getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(String workId) {
+        this.workId = workId;
+    }
+
+
+
+    /**
+     * xxx 地址
+     */
+    private String address;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+
+    /**
+     * xxx 出生日期
+     */
+    private Date birthday;
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+
+
+    /**
+     * xxx 入职日期
+     */
+    private Date startDate;
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+
+
+
+    /**
+     * xxx 实时记录表
+     */
+    private SysAttendanceRecord sysAttendanceRecord;
+    public SysAttendanceRecord getSysAttendanceRecord() {
+        return sysAttendanceRecord;
+    }
+
+    public void setSysAttendanceRecord(SysAttendanceRecord sysAttendanceRecord) {
+        this.sysAttendanceRecord = sysAttendanceRecord;
+    }
+
+    /**
+     * xxx 离职日期
+     */
+    private Date endDate;
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
     public SysUser() {
 
@@ -317,6 +410,19 @@ public class SysUser extends BaseEntity {
                 .append("updateTime", getUpdateTime())
                 .append("remark", getRemark())
                 .append("dept", getDept())
+                /**
+                 * xxx 工号 入职离职时间 地址 出生日期
+                 */
+                //todo ?
+                .append("workId", getWorkId())
+                .append("address", getAddress())
+                .append("birthday", getBirthday())
+                .append("startDate", getStartDate())
+                .append("endDate", getEndDate())
+
+
+
+
                 .toString();
     }
 }

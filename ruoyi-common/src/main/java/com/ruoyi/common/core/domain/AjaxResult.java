@@ -76,7 +76,8 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static AjaxResult success(Object data) {
-        return AjaxResult.success("操作成功", data);
+        AjaxResult success = AjaxResult.success("操作成功", data);
+        return success;
     }
 
     /**

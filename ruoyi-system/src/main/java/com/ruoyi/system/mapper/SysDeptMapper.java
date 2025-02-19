@@ -115,4 +115,7 @@ public interface SysDeptMapper {
      * @return 结果
      */
     public int deleteDeptById(Long deptId);
+
+    //查询子部门
+    public List<SysDept> selectSubDeptByParentId(Long deptId);
 }

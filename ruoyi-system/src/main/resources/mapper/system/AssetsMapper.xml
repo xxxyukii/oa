@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AssetsMapper">
+    <resultMap id="AssetsResultMap" type="Assets">
+        <id property="assetId" column="asset_id"/>
+        <result property="assetName" column="asset_name"/>
+        <result property="assetType" column="asset_type"/>
+        <result property="brand" column="brand"/>
+        <result property="model" column="model"/>
+        <result property="snNumber" column="sn_number"/>
+        <result property="manufacturingDate" column="manufacturing_date"/>
+        <result property="inboundDate" column="inbound_date"/>
+        <result property="purchaseBatch" column="purchase_batch"/>
+        <result property="quantity" column="quantity"/>
+        <result property="unit" column="unit"/>
+        <result property="remark" column="remark"/>
+        <result property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="location" column="location"/>
+        <result property="status" column="status"/>
+        <result property="isInStock" column="is_in_stock"/>
+        <result property="isNew" column="is_new"/>
+        <result property="assetManagerId" column="asset_manager_id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="assetManagerName" column="asset_manager_name"/>
+        <result property="userName" column="user_name"/>
+
+        <association property="sysUser" javaType="com.ruoyi.common.core.domain.entity.SysUser" column="user_id">
+            <id property="userId" column="user_id"/>
+            <result property="userName" column="user_name"/>
+            <result property="phonenumber" column="phonenumber"/>
+            <result property="workId" column="work_id"/>
+        </association>
+        <association property="sysDept" javaType="com.ruoyi.common.core.domain.entity.SysDept" column="dept_id">
+            <id property="deptId" column="dept_id"/>
+            <result property="deptName" column="dept_name"></result>
+        </association>
+
+    </resultMap>
+    <insert id="insertAssets" parameterType="assets">
+        INSERT INTO assets(
+        <if test="assetId!=null">asset_id,</if>
+        <if test="assetName!=null and assetName!=''">asset_name,</if>
+        <if test="assetType!=null and assetType!=''">asset_type,</if>
+        <if test="brand!=null and brand!=''">brand,</if>
+        <if test="model!=null and model!=''">model,</if>
+        <if test="snNumber!=null and snNumber!=''">sn_number,</if>
+        <if test="manufacturingDate!=null">manufacturing_date,</if>
+        <if test="inboundDate!=null">inbound_date,</if>
+        <if test="purchaseBatch!=null and purchaseBatch!=''">purchase_batch,</if>
+        <if test="quantity!=null">quantity,</if>
+        <if test="unit!=null and unit!=''">unit,</if>
+        <if test="remark!=null and remark!=''">remark,</if>
+        <if test="userId!=null">user_id,</if>
+        <if test="deptId!=null">dept_id,</if>
+        <if test="location!=null and location!=''">location,</if>
+        <if test="status!=null">status,</if>
+        <if test="isInStock!=null and isInStock!=''">is_in_stock,</if>
+        <if test="isNew!=null and isNew!=''">is_new,</if>
+        <if test="assetManagerId!=null">asset_manager_id,</if>
+        <if test="assetManagerName!=null and assetManagerName!=''">asset_manager_name,</if>
+        <if test="userName!=null and userName!=''">user_name,</if>
+        created_at,updated_at
+        )VALUES (
+        <if test="assetId!=null">#{assetId},</if>
+        <if test="assetName!=null and assetName!=''">#{assetName},</if>
+        <if test="assetType!=null and assetType!=''">#{assetType},</if>
+        <if test="brand!=null and brand!=''">#{brand},</if>
+        <if test="model!=null and model!=''">#{model},</if>
+        <if test="snNumber!=null and snNumber!=''">#{snNumber},</if>
+        <if test="manufacturingDate!=null">#{manufacturingDate},</if>
+        <if test="inboundDate!=null">#{inboundDate},</if>
+        <if test="purchaseBatch!=null and purchaseBatch!=''">#{purchaseBatch},</if>
+        <if test="quantity!=null">#{quantity},</if>
+        <if test="unit!=null and unit!=''">#{unit},</if>
+        <if test="remark!=null and remark!=''">#{remark},</if>
+        <if test="userId!=null">#{userId},</if>
+        <if test="deptId!=null">#{deptId},</if>
+        <if test="location!=null and location!=''">#{location},</if>
+        <if test="status!=null">#{status},</if>
+        <if test="isInStock!=null and isInStock!=''">#{isInStock},</if>
+        <if test="isNew!=null and isNew!=''">#{isNew},</if>
+        <if test="assetManagerId!=null">#{userId},</if>
+        <if test="assetManagerName!=null and assetManagerName!=''">#{assetManagerName},</if>
+        <if test="userName!=null and userName!=''">#{userName},</if>
+        sysdate(),sysdate()
+        )
+    </insert>
+
+    <update id="updateAsset" parameterType="Assets">
+        UPDATE assets
+        <set>
+            <if test="assetId!=null">asset_id = #{assetId},</if>
+            <if test="assetName!=null and assetName!=''">asset_name = #{assetName},</if>
+            <if test="assetType!=null and assetType!=''">asset_type = #{assetType},</if>
+            <if test="brand!=null and brand!=''">brand = #{brand},</if>
+            <if test="model!=null and model!=''">model = #{model},</if>
+            <if test="manufacturingDate!=null">manufacturing_date = #{manufacturingDate},</if>
+            <if test="inboundDate!=null">inbound_date = #{inboundDate},</if>
+            <if test="purchaseBatch!=null and purchaseBatch!=''">purchase_batch = #{purchaseBatch},</if>
+            <if test="quantity!=null">quantity = #{quantity},</if>
+            <if test="unit!=null and unit!=''">unit = #{unit},</if>
+            <if test="remark!=null and remark!=''">remark = #{remark},</if>
+            <if test="userId!=null">user_id = #{userId},</if>
+            <if test="deptId != null and deptId != 0">dept_id = #{deptId},</if>
+            <if test="location!=null and location!=''">location = #{location},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="isInStock!=null and isInStock!=''">is_in_stock = #{isInStock},</if>
+            <if test="isNew!=null and isNew!=''">is_new = #{isNew},</if>
+            <if test="assetManagerId!=null">asset_manager_id = #{userId},</if>
+            <if test="assetManagerName!=null and assetManagerName!=''">asset_manager_name = #{assetManagerName},</if>
+            <if test="userName!=null and userName!=''">user_name = #{userName},</if>
+            created_at = sysdate(),updated_at=sysdate()
+        </set>
+        WHERE asset_id = #{assetId}
+    </update>
+    <update id="reduceQuantity" parameterType="Assets">
+        UPDATE assets
+        <set>
+            <if test="quantity!=null">quantity = quantity-1</if>
+        </set>
+        WHERE asset_id = #{assetId} AND quantity > 0;
+
+    </update>
+    <delete id="delAssetsByIds" parameterType="Long">
+        delete from assets
+               where asset_id in
+        <foreach collection="array" item="assetId" open="(" separator="," close=")">
+            #{assetId}
+        </foreach>
+    </delete>
+
+    <select id="getAssetsList" resultMap="AssetsResultMap">
+
+        SELECT ass.asset_id, ass.asset_name, ass.asset_type, ass.status,ass.sn_number,ass.model,
+        ass.brand,ass.manufacturing_date,ass.inbound_date,ass.purchase_batch,ass.quantity,ass.dept_id,
+        ass.unit,ass.remark,ass.location,ass.is_in_stock,ass.is_new,ass.asset_manager_id,ass.asset_manager_name,ass.created_at,ass.updated_at,
+        ass.user_name,
+        su.user_id,su.user_name,dt.dept_name
+        from assets as ass
+        LEFT JOIN sys_user as su ON ass.user_id = su.user_id
+        LEFT JOIN sys_dept as dt ON ass.dept_id = dt.dept_id
+        <where>
+            <if test="assetId!=null">
+                AND asset_id = #{assetId}
+            </if>
+            <if test="assetName!=null and assetName!='' ">
+                AND ass.asset_name like concat('%',#{assetName},'%')
+            </if>
+            <if test="assetType!=null and assetType!='' ">
+                AND ass.asset_type like concat('%',#{assetType},'%')
+            </if>
+
+        </where>
+
+    </select>
+    <select id="getAssetByAssetId" resultMap="AssetsResultMap">
+        SELECT ass.asset_id, ass.asset_name, ass.asset_type, ass.status,ass.sn_number,ass.model,
+        ass.brand,ass.manufacturing_date,ass.inbound_date,ass.purchase_batch,ass.quantity,ass.dept_id,
+        ass.unit,ass.remark,ass.location,ass.is_in_stock,ass.is_new,ass.asset_manager_id,ass.asset_manager_name,ass.created_at,ass.updated_at,
+        ass.user_name,
+        su.user_id,su.user_name,dt.dept_name
+        from assets as ass
+        LEFT JOIN sys_user as su ON ass.user_id = su.user_id
+        LEFT JOIN sys_dept as dt ON ass.dept_id = dt.dept_id
+        WHERE 1=1
+        <if test="assetId!=null">
+            AND asset_id = #{assetId}
+        </if>
+    </select>
+    <select id="getAssetByUserId" resultMap="AssetsResultMap">
+        SELECT asset_id, asset_name, asset_type,quantity
+        from assets
+        WHERE 1=1
+        <if test="userId!=null">
+            AND user_id = #{userId}
+        </if>
+
+    </select>
+    <select id="selQuantityByAssetId" resultMap="AssetsResultMap">
+        SELECT asset_id, quantity
+        from assets
+        WHERE 1=1
+        <if test="assetId!=null">
+            AND asset_id = #{assetId}
+        </if>
+    </select>
+
+</mapper>

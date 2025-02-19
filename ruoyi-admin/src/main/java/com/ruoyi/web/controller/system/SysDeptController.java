@@ -4,6 +4,7 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.domain.TreeSelect;
 import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.StringUtils;
@@ -48,6 +49,8 @@ public class SysDeptController extends BaseController {
         return success(depts);
     }
 
+
+
     /**
      * 根据部门编号获取详细信息
      */
@@ -57,6 +60,23 @@ public class SysDeptController extends BaseController {
         deptService.checkDeptDataScope(deptId);
         return success(deptService.selectDeptById(deptId));
     }
+
+    /**
+     *  xx 根据部门编号获取它的子部门或员工信息 tree
+     */
+
+    @GetMapping("/deptUserTree/{deptId}")
+    public AjaxResult getDeptTree(@PathVariable Long deptId) {
+        List<TreeSelect> tree = deptService.selectDeptUserTreeList(deptId);
+        return success(tree);
+    }
+
+    // 懒加载：根据父部门ID加载子部门或员工
+
+
+
+
+
 
     /**
      * 新增部门

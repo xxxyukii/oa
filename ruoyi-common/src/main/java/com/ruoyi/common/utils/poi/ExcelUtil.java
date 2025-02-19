@@ -437,7 +437,7 @@ public class ExcelUtil<T> {
     public void exportExcel(HttpServletResponse response, List<T> list, String sheetName, String title) {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
-        this.init(list, sheetName, title, Type.EXPORT);
+        this.init(list, sheetName, title, Type.EXPORT);//初始
         exportExcel(response);
     }
 
@@ -1223,9 +1223,14 @@ public class ExcelUtil<T> {
                     Excel attr = field.getAnnotation(Excel.class);
                     if (attr != null && (attr.type() == Type.ALL || attr.type() == type)) {
                         field.setAccessible(true);
+                        int[] a = {1, 2};
+                        int[] b = new int[2];
+                        int[] c = new int[]{1, 2};
+                        b[0] = 1;
+                        b[1] = 2;
                         fields.add(new Object[]{field, attr});
                     }
-                    if (Collection.class.isAssignableFrom(field.getType())) {
+                    if (Collection.class.isAssignableFrom(field.getType())) {// field.getType()有没有继承关系 Collection.class
                         subMethod = getSubMethod(field.getName(), clazz);
                         ParameterizedType pt = (ParameterizedType) field.getGenericType();
                         Class<?> subClass = (Class<?>) pt.getActualTypeArguments()[0];

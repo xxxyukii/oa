@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.MeetingMapper">
+    <resultMap id="MeetingRoomResultMap" type="MeetingRoom">
+        <id property="roomId" column="room_id"/>
+        <result property="roomName" column="room_name"/>
+        <result property="location" column="location"/>
+        <result property="capacity" column="capacity"/>
+        <result property="available" column="available"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="equipment" column="equipment"/>
+        <result property="inUse" column="in_use"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <resultMap id="MeetingBookingResultMap" type="MeetingBooking">
+        <id property="bookingId" column="booking_id"/>
+        <result property="bookedBy" column="booked_by"/>
+        <result property="contactInfo" column="contact_info"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="purpose" column="purpose"/>
+        <result property="theme" column="theme"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="del_flag"/>
+
+
+<!--        <result property="meetingRoom.roomName" column="room_name"/>-->
+<!--        <result property="dept.deptName" column="room_name"/>-->
+<!--         嵌套对象: MeetingRoom-->
+        <association property="meetingRoom" column="room_id" javaType="com.ruoyi.common.core.domain.entity.MeetingRoom">
+            <id property="roomId" column="room_id"/>
+            <result property="roomName" column="room_name"/>
+            <result property="capacity" column="capacity"/>
+            <!-- 根据 MeetingRoom 的字段继续添加 -->
+        </association>
+
+        <!-- 嵌套对象: SysDept -->
+        <association property="dept" javaType="com.ruoyi.common.core.domain.entity.SysDept">
+            <id property="deptId" column="dept_id"/>
+            <result property="deptName" column="dept_name"/>
+            <!-- 根据 SysDept 的字段继续添加 -->
+        </association>
+        <!-- 嵌套对象: SysUser -->
+        <association property="sysUser" javaType="com.ruoyi.common.core.domain.entity.SysUser">
+            <id property="userId" column="user_id"/>
+            <result property="userName" column="user_name"/>
+            <result property="phonenumber" column="phonenumber"/>
+            <!-- 根据 SysDept 的字段继续添加 -->
+        </association>
+
+    </resultMap>
+
+    <sql id="selectMeetingRoomVo">
+        SELECT room_id,
+               room_name,
+               location,
+               capacity,
+               available,
+               image_url,
+               equipment,
+               in_use,
+               created_at,
+               updated_at
+        FROM meeting_rooms
+    </sql>
+    <insert id="insertMeetingRoom" useGeneratedKeys="true" keyProperty="roomId" parameterType="MeetingRoom">
+        INSERT INTO meeting_rooms (room_name,
+                                   location,
+                                   capacity,
+                                   available,
+                                   image_url,
+                                   equipment,
+                                   in_use,
+                                   created_at,
+                                   updated_at
+                                   )
+        VALUES (#{roomName},
+                #{location},
+                #{capacity},
+                #{available},
+                #{imageUrl},
+                #{equipment},
+                #{inUse},
+                sysdate(),
+                sysdate())
+    </insert>
+    <insert id="addMeetingBooking" useGeneratedKeys="true" keyProperty="bookingId" parameterType="MeetingBooking">
+        INSERT INTO meeting_bookings (
+        <trim prefix="" suffix="" suffixOverrides=",">
+
+            <if test="startTime != null">start_time,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="purpose != null">purpose,</if>
+            <if test="theme != null">theme,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="roomId != null">room_id,</if>
+            <if test="phonenumber != null">phonenumber,</if>
+            <if test="checkedAttendees != null and checkedAttendees != ''">checkedAttendees,</if>
+            dept_id,
+            created_at,
+            status,
+        </trim>
+        ) VALUES (
+        <trim prefix="" suffix="" suffixOverrides=",">
+
+            <if test="startTime != null">#{startTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="purpose != null">#{purpose},</if>
+            <if test="theme != null">#{theme},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="roomId != null">#{roomId},</if>
+            <if test="phonenumber != null">#{phonenumber},</if>
+            <if test="checkedAttendees != null and checkedAttendees != ''">#{checkedAttendees},</if>
+            #{deptId},
+            sysdate(),
+            0
+        </trim>
+        )
+    </insert>
+
+    <update id="updateMeetingRoom" parameterType="MeetingRoom">
+        update meeting_rooms
+        <set>
+            <if test="roomId!=null">room_id = #{roomId},</if>
+            <if test="roomName != null and roomName != ''">room_name = #{roomName},</if>
+            <if test="location != null and location != ''">location = #{location},</if>
+            <if test="capacity != null">capacity = #{capacity},</if>
+            image_url = #{imageUrl},
+            <if test="equipment != null and equipment != ''">equipment = #{equipment},</if>
+            created_at = sysdate(),
+            in_use=#{inUse}
+        </set>
+        where room_id = #{roomId}
+    </update>
+    <update id="updateMeetingBooking" parameterType="MeetingBooking">
+        update meeting_bookings
+        <set>
+            <trim prefix="SET" suffix="" suffixOverrides=",">
+            <if test="bookingId != null">booking_id = #{bookingId},</if>
+            <if test="status != null">status = #{status},</if>
+            examineReason = #{examineReason},
+            </trim>
+        </set>
+        where booking_id = #{bookingId}
+    </update>
+
+
+    <delete id="deleteMeetingRoomByIds" parameterType="Long">
+        delete from meeting_rooms
+               where room_id IN
+        <foreach collection="array" item="roomId" open="(" separator="," close=")">
+            #{roomId}
+        </foreach>
+    </delete>
+
+
+    <delete id="deleteMeetingBookingByIds" parameterType="Long">
+        delete from meeting_bookings
+        WHERE booking_id IN
+        <foreach collection="array" item="bookingId" open="(" separator="," close=")">
+            #{bookingId}
+        </foreach>
+
+    </delete>
+
+
+    <select id="getAllMeetingRoom" resultMap="MeetingRoomResultMap">
+        SELECT room_id,
+        room_name,
+        location,
+        capacity,
+        available,
+        image_url,
+        equipment,
+        in_use,
+        created_at,
+        updated_at
+        FROM meeting_rooms
+        WHERE 1=1
+        <if test="roomId != null">
+            AND room_id = #{roomId}
+        </if>
+        <if test="roomName != null and roomName != ''">
+            AND room_name LIKE concat('%', #{roomName}, '%')
+        </if>
+        <if test="capacity != null and capacity != ''">
+            AND capacity BETWEEN #{began} AND #{end}
+        </if>
+        <if test="location != null and location != ''">
+            AND location = #{location}
+        </if>
+        <if test="equipment != null and equipment != ''">
+            AND equipment LIKE concat('%', #{equipment}, '%')
+        </if>
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="checkRoomNameUnique" resultType="java.lang.Boolean" parameterType="String">
+        SELECT COUNT(*) > 0
+        FROM meeting_rooms
+        WHERE room_name = #{roomName}
+    </select>
+    <select id="getMeetingRoomByRoomId" resultMap="MeetingRoomResultMap">
+        SELECT room_id,
+               room_name,
+               location,
+               capacity,
+               available,
+               image_url,
+               equipment,
+               in_use,
+               created_at,
+               updated_at
+        FROM meeting_rooms
+        WHERE room_id = #{roomId}
+    </select>
+    <select id="getAllMeetingBooking" resultMap="MeetingBookingResultMap">
+        SELECT
+        mb.booking_id,
+        mb.phonenumber,
+        mb.start_time,
+        mb.end_time,
+        mb.purpose,
+        mb.created_at,
+        mb.theme,
+        mb.status,
+        mr.room_id,
+        mr.room_name,
+        su.user_name,
+        su.user_id,
+        su.phonenumber
+        FROM
+        meeting_bookings mb
+        LEFT JOIN
+        meeting_rooms mr ON mb.room_id = mr.room_id
+        LEFT JOIN
+        sys_user su ON mb.user_id = su.user_id
+        <where>
+            <if test="bookingId != null">
+                AND mb.booking_id = #{bookingId}
+            </if>
+            <if test="roomId != null ">
+                AND mr.room_id = #{roomId}
+            </if>
+            <if test="roomName != null and roomName != ''">
+                AND mr.room_name like concat('%', #{roomName}, '%')
+            </if>
+            <if test="startTime != null">
+                AND mb.start_time &gt;= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND mb.end_time &lt;= #{endTime}
+            </if>
+            <if test="status != null">
+                AND mb.status = #{status}
+            </if>
+        </where>
+        ORDER BY created_at DESC
+    </select>
+    <select id="getConflictingBookings" resultMap="MeetingBookingResultMap">
+        <![CDATA[
+        SELECT * FROM meeting_bookings
+        WHERE room_id = #{roomId}
+        AND (start_time < #{endTime} AND end_time > #{startTime})
+        ]]>
+    </select>
+    <select id="getRoomNamelist" resultMap="MeetingRoomResultMap">
+        select room_name from meeting_rooms;
+    </select>
+    <select id="selectBookingById" resultMap="MeetingBookingResultMap">
+        SELECT
+        mb.booking_id,
+        mb.phonenumber,
+        mb.start_time,
+        mb.end_time,
+        mb.purpose,
+        mb.created_at,
+        mb.theme,
+        mb.user_id,
+        mb.status
+        FROM
+        meeting_bookings as mb
+        WHERE 1=1
+        <if test="bookingId != null">
+            AND mb.booking_id = #{bookingId}
+        </if>
+    </select>
+<!--    -->
+    <select id="getAvailableRooms" resultMap="MeetingBookingResultMap">
+        SELECT mr.room_id, mr.room_name, mr.capacity
+        FROM meeting_rooms mr
+        WHERE mr.room_id NOT IN ( -- 原9：00~10：00  9：30~10：00  9：10~9：30
+        SELECT mb.room_id
+        FROM meeting_bookings mb
+        WHERE (mb.start_time &lt; #{endTime} -- 预约的结束时间必须晚于已有预约的开始时间
+                   AND mb.end_time &gt; #{startTime})-- 预约的开始时间必须早于已有预约的结束时间
+        )
+    </select>
+</mapper>

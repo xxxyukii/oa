@@ -112,7 +112,7 @@
         delete from sys_post where post_id = #{postId}
     </delete>
 
-    <delete id="deletePostByIds" parameterType="Long">
+    <delete id="deletePostByIds" parameterType="Long">--  传入参数的类型
         delete from sys_post where post_id in
         <foreach collection="array" item="postId" open="(" separator="," close=")">
             #{postId}

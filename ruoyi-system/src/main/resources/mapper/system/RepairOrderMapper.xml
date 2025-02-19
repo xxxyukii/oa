@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.RepairOrderMapper">
+    <resultMap id="RepairOrderResultMap" type="RepairOrder">
+        <id property="repairId" column="application_id"/>
+        <result property="assetId" column="asset_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="repairDate" column="application_date"/>
+        <result property="description" column="description"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="repairStatus" column="repair_status"/>
+        <result property="assetManagerId" column="asset_manager_id"/>
+        <result property="productChange" column="product_change"/>
+        <result property="createdAt" column="created_at"/>
+
+    </resultMap>
+    <insert id="saveRepairOrder" parameterType="repairOrder">
+        INSERT INTO repair_Order (
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="repairId != null">repair_id,</if>
+            <if test="assetId != null">asset_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="userName != null and userName != ''">user_name,</if>
+            <if test="repairDate != null">repair_date,</if>
+            <if test="description != null and description != ''">description,</if>
+            <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+            <if test="repairStatus != null">repair_status,</if>
+            <if test="assetManagerId != null">asset_manager_id,</if>
+            <if test="productChange != null">product_change,</if>
+            created_at
+        </trim>
+        )VALUES (
+        <trim prefix="" suffix="" suffixOverrides=",">
+            <if test="repairId != null">#{repairId},</if>
+            <if test="assetId != null">#{assetId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="userName != null and userName != ''">#{userName},</if>
+            <if test="repairDate != null">#{repairDate},</if>
+            <if test="description != null and description != ''">#{description},</if>
+            <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+            <if test="repairStatus != null">#{repairStatus},</if>
+            <if test="assetManagerId != null">#{assetManagerId},</if>
+            <if test="productChange != null">#{productChange},</if>
+            sysdate()
+        </trim>
+        )
+    </insert>
+</mapper>

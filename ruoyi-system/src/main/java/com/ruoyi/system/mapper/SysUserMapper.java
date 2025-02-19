@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 
+import com.ruoyi.common.core.domain.entity.SysDept;
 import org.apache.ibatis.annotations.Param;
 import com.ruoyi.common.core.domain.entity.SysUser;
 
@@ -124,4 +125,12 @@ public interface SysUserMapper {
      * @return 结果
      */
     public SysUser checkEmailUnique(String email);
+
+    List<SysUser> getEmpByDeptId(@Param("deptId")Long deptId, @Param("query") String query);
+
+    //xx 根据deptId查询员工
+    List<SysUser> selectUserByDeptId(Long deptId);
+    //xx
+    List<SysUser> getUserInfo(String userName);
+
 }
