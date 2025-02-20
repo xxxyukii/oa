@@ -33,6 +33,7 @@ public class MeetingServiceImpl implements IMeetingService {
 
     @Override
     public boolean checkRoomNameUnique(String roomName) {
+
 //        -1L：作为默认值表示“无效”或“特殊”值，避免使用 null。
 //StringUtils.isNull(post.getPostId())：
 // 用于判断 post.getPostId() 是否为 null，如果是 null，将 postId 设置为 -1L。
@@ -42,7 +43,6 @@ public class MeetingServiceImpl implements IMeetingService {
 //        if (StringUtils.isNotNull(info) && info.getRoomId().longValue() != roomId.longValue()) {
 //            return UserConstants.NOT_UNIQUE;
 //        }
-//        return UserConstants.UNIQUE;
 
         return meetingMapper.checkRoomNameUnique(roomName);
 
