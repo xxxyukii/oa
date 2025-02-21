@@ -9,6 +9,7 @@ import com.ruoyi.system.service.ISysAttendanceRecordService;
 import com.ruoyi.system.service.ISysRoleService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,7 +45,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/system/attendance")
-public class SysAttendanceRecordController extends BaseController implements InitializingBean {
+public class SysAttendanceRecordController extends BaseController {
 
 
     @Autowired
@@ -75,7 +76,7 @@ public class SysAttendanceRecordController extends BaseController implements Ini
 
 
 
-    @Override
+    @Scheduled(cron = "0 0 4 * * ?") //每天4：00自动运行   spring scheduled 表达式生成   ex每天1点10分30秒触发任务
     public void afterPropertiesSet() throws Exception {
 
 
