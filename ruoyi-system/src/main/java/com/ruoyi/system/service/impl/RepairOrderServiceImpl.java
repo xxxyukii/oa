@@ -6,6 +6,9 @@ import com.ruoyi.system.service.IRepairOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class RepairOrderServiceImpl implements IRepairOrderService {
     @Autowired
@@ -25,5 +28,11 @@ public class RepairOrderServiceImpl implements IRepairOrderService {
         }
 
         return result;
+    }
+
+    @Override
+    public List<RepairOrder> getRepairList(RepairOrder repairOrder) {
+
+        return repairOrderMapper.getRepairList(repairOrder);
     }
 }

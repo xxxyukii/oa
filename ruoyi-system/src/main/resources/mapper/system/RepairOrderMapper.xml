@@ -48,4 +48,23 @@
         </trim>
         )
     </insert>
+    <select id="getRepairList" resultMap="RepairOrderResultMap">
+        select re.repair_id,re.asset_id,re.user_id,re.user_name,re.repair_date,
+        re.description,re.image_url,re.repair_status,re.asset_manager_id,
+        re.product_change,re.created_at,
+        a.asset_name
+        from repair_order as re
+        LEFT JOIN assets as a ON re.asset_id = a.asset_id
+        where 1=1
+        <if test="assetId!=null">
+            AND re.repair_id = #{repairId}
+        </if>
+        <if test="assetId!=null">
+            AND re.asset_id = #{assetId}
+        </if>
+        <if test="repairStatus != null">
+            AND re.repairStatus = #{repairStatus}
+        </if>
+
+    </select>
 </mapper>
