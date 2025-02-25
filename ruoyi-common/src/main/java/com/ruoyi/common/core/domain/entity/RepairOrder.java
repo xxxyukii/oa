@@ -18,4 +18,5 @@ public class RepairOrder {
     private Long assetManagerId;
     private Integer productChange;
     private LocalDateTime createdAt;
+    private Assets assets;
 }

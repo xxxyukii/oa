@@ -12,6 +12,10 @@ import com.ruoyi.system.service.IMeetingService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -99,32 +103,62 @@ public class MeetingServiceImpl implements IMeetingService {
         return meetingMapper.getConflictingBookings(roomId, startTime, endTime);
     }
 
-    //    事务管理：为了确保数据一致性，在 deleteMeetingBookingByIds 方法上加了
+
+ //事务开启的
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
+//    @Transactional(rollbackFor = Exception.class)
+    //这个方法和下边的方法加了事务处理注解是一个意思
+    public int deleteMeetingBookingByIds(Long[] bookingIds, Long... userId) {
+        //开启事务
+        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+        TransactionStatus transactionStatus = transactionManager.getTransaction(def);
+        try {
+            int i = this.deleteMeetingBookingByIds(bookingIds, userId[0]);
+            //commit
+            transactionManager.commit(transactionStatus);
+            return i;
+        } catch (Exception e) {
+            //rollback
+            transactionManager.rollback(transactionStatus);
+            throw new RuntimeException(e);
+        }
+    }
+
+    //   事务管理：为了确保数据一致性，在 deleteMeetingBookingByIds 方法上加了所谓的同名方法
 //    @Transactional 注解，确保一组删除操作要么全部成功，要么全部回滚。
+// (rollbackFor = Exception.class)  如果报错回滚Exception 这个是所有异常的父类最大的 和catch (Exception e)一个意思
+    @Transactional(rollbackFor = Exception.class)
+    //写了这个注解 最好不写 try catch(没必要) 除非除非 特别情况下 如果写了 catch里一定要抛异常出去
     @Override
     public int deleteMeetingBookingByIds(Long[] bookingIds, Long userId) {
 
-        // 遍历每个 bookingId 进行逐个删除
-        for (Long bookingId : bookingIds) {
-            // 查询每个会议记录
-            MeetingBooking meetingBooking = meetingMapper.selectBookingById(bookingId);
-            // 如果找不到会议记录，抛出异常
-            if (meetingBooking == null) {
-                throw new ServiceException("未找到会议记录，bookingId：" + bookingId);
+        try {
+            // 遍历每个 bookingId 进行逐个删除
+            for (Long bookingId : bookingIds) {
+                // 查询每个会议记录
+                MeetingBooking meetingBooking = meetingMapper.selectBookingById(bookingId);
+                // 如果找不到会议记录，抛出异常
+                if (meetingBooking == null) {
+                    throw new ServiceException("未找到会议记录，bookingId：" + bookingId);
+                }
+                // 获取会议记录的用户ID
+                Long getUserId = meetingBooking.getSysUser().getUserId();
+                // 验证当前登录用户是否是预约人
+                if (getUserId == null || !getUserId.equals(userId)) {
+                    throw new ServiceException(userId + " 不是当前用户 " + getUserId);
+                }
+                //todo 抛出往上走一级 不写抛 都不执行这下一步了
+                //验证会议记录是否为“申请中”状态
+                if (meetingBooking.getStatus() != 0) {
+                    throw new ServiceException("会议记录 " + bookingId + " 不是审核中状态，无法删除");
+                }
             }
-            // 获取会议记录的用户ID
-            Long getUserId = meetingBooking.getSysUser().getUserId();
-            // 验证当前登录用户是否是预约人
-            if (getUserId == null || !getUserId.equals(userId)) {
-                throw new ServiceException(userId + " 不是当前用户 " + getUserId);
-            }
-            //todo 抛出往上走一级 不写抛 都不执行这下一步了
-            //验证会议记录是否为“申请中”状态
-            if (meetingBooking.getStatus() != 0) {
-                throw new ServiceException("会议记录 " + bookingId + " 不是审核中状态，无法删除");
-            }
+            return meetingMapper.deleteMeetingBookingByIds(bookingIds);
+        } catch (ServiceException e) {
+            throw new ServiceException();
         }
-        return meetingMapper.deleteMeetingBookingByIds(bookingIds);
 
     }
 

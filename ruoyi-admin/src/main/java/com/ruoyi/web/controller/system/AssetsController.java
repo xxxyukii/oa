@@ -7,6 +7,7 @@ import com.ruoyi.common.core.domain.entity.Assets;
 import com.ruoyi.common.core.domain.entity.RepairOrder;
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.domain.enums.EquipmentStatusEnum;
+import com.ruoyi.common.core.domain.enums.RepairStatusEnum;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.system.service.IAssetsService;
@@ -221,6 +222,8 @@ public class AssetsController extends BaseController {
         // 检查传递的 order 对象
         System.out.println(repairOrder);
         try {
+            //维修单申请时默认设置为“申请中”
+            repairOrder.setRepairStatus(RepairStatusEnum.APPLIED.getCode());
             return toAjax(repairOrderService.saveRepairOrder(repairOrder));
         } catch (Exception e) {
             e.printStackTrace();

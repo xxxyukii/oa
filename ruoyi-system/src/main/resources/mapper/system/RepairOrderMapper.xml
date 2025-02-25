@@ -4,17 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.RepairOrderMapper">
     <resultMap id="RepairOrderResultMap" type="RepairOrder">
-        <id property="repairId" column="application_id"/>
+        <id property="repairId" column="repair_id"/>
         <result property="assetId" column="asset_id"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
-        <result property="repairDate" column="application_date"/>
+        <result property="repairDate" column="repair_date"/>
         <result property="description" column="description"/>
         <result property="imageUrl" column="image_url"/>
         <result property="repairStatus" column="repair_status"/>
         <result property="assetManagerId" column="asset_manager_id"/>
         <result property="productChange" column="product_change"/>
         <result property="createdAt" column="created_at"/>
+
 
     </resultMap>
     <insert id="saveRepairOrder" parameterType="repairOrder">
@@ -57,13 +58,13 @@
         LEFT JOIN assets as a ON re.asset_id = a.asset_id
         where 1=1
         <if test="assetId!=null">
-            AND re.repair_id = #{repairId}
+            AND repair_id = #{repairId}
         </if>
         <if test="assetId!=null">
-            AND re.asset_id = #{assetId}
+            AND asset_id = #{assetId}
         </if>
         <if test="repairStatus != null">
-            AND re.repairStatus = #{repairStatus}
+            AND repair_status = #{repairStatus}
         </if>
 
     </select>
