@@ -111,7 +111,7 @@ public class MeetingServiceImpl implements IMeetingService {
 //    @Transactional(rollbackFor = Exception.class)
     //这个方法和下边的方法加了事务处理注解是一个意思
     public int deleteMeetingBookingByIds(Long[] bookingIds, Long... userId) {
-        //开启事务
+        //开启事务   （百度搜 spring手动开启事务）
         DefaultTransactionDefinition def = new DefaultTransactionDefinition();
         TransactionStatus transactionStatus = transactionManager.getTransaction(def);
         try {

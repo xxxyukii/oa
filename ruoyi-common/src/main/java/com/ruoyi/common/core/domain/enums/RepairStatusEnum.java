@@ -8,8 +8,8 @@ import lombok.Getter;
 public enum RepairStatusEnum {
 
     APPLIED(0, "已申请"),
-    AGREE(0, "同意"),
-    REJECT(0, "驳回");
+    AGREE(1, "维修中"),
+    REJECT(2, "已完成");
 
     private Integer code;
     private String desc;

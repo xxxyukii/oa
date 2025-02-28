@@ -51,8 +51,8 @@ public class MeetingBooking {
 
 
     private String contactInfo;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //接收实参
+//json  先解成 key value key value
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //Spring json 接收实参
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
 //    前端时间格式入参传参 传输

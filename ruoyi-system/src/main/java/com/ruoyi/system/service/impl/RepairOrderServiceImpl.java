@@ -15,6 +15,8 @@ public class RepairOrderServiceImpl implements IRepairOrderService {
     private RepairOrderMapper repairOrderMapper;
     @Autowired
     private NotificationServiceImpl notificationService;
+
+
     @Override
     public int saveRepairOrder(RepairOrder repairOrder) {
         // 保存维修单到数据库
@@ -34,5 +36,27 @@ public class RepairOrderServiceImpl implements IRepairOrderService {
     public List<RepairOrder> getRepairList(RepairOrder repairOrder) {
 
         return repairOrderMapper.getRepairList(repairOrder);
+    }
+
+    @Override
+    public int repairStatusExamine(RepairOrder repairOrder) {
+        Long repairId = repairOrder.getRepairId();
+        Integer repairStatus = repairOrder.getRepairStatus();
+        String remark = repairOrder.getRemark();
+        return repairOrderMapper.repairStatusExamine(repairId,repairStatus,remark);
+    }
+
+    @Override
+    public RepairOrder getRepairInfo(Long repairId) {
+        if (repairId == null) {
+            return new RepairOrder();
+        }
+        return repairOrderMapper.getRepairInfo(repairId);
+    }
+//    维修人员 确认开始维修
+    @Override
+    public int repairAction(RepairOrder repairOrder) {
+
+        return repairOrderMapper.repairAction(repairOrder);
     }
 }

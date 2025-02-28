@@ -51,7 +51,7 @@
             <id property="userId" column="user_id"/>
             <result property="userName" column="user_name"/>
             <result property="phonenumber" column="phonenumber"/>
-            <!-- 根据 SysDept 的字段继续添加 -->
+
         </association>
 
     </resultMap>
