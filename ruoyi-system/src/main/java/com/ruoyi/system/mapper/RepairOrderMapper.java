@@ -19,4 +19,8 @@ public interface RepairOrderMapper {
     RepairOrder getRepairInfo(Long repairId);
     // 维修人员 确认开始维修 状态改为维修
     int repairAction(RepairOrder repairOrder);
+
+    int repaired(RepairOrder repairOrder);
+
+    int confirm(RepairOrder repairOrder);
 }

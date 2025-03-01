@@ -17,4 +17,8 @@ public interface IRepairOrderService {
     public RepairOrder getRepairInfo(Long repairId);
 //    维修人员提交单
     public int repairAction(RepairOrder repairOrder);
+
+    int repaired(RepairOrder repairOrder);
+
+    int confirm(RepairOrder repairOrder);
 }

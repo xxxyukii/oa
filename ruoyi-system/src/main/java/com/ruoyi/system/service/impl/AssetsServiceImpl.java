@@ -112,5 +112,14 @@ public class AssetsServiceImpl implements IAssetsService {
         return assetsMapper.reduceQuantity(assetId);
     }
 
-
+    @Override
+    public int outDepot(Long assetId) {
+        Assets selQuantityByAssetId = assetsMapper.selQuantityByAssetId(assetId);
+        if (selQuantityByAssetId == null) {
+            return 0;
+        }
+        selQuantityByAssetId.setIsInStock("N");
+        assetsMapper.updateAsset(selQuantityByAssetId);
+        return 1;
+    }
 }

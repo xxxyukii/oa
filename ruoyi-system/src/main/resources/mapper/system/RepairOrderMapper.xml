@@ -76,6 +76,23 @@
         where repair_id = #{repairId}
 
     </update>
+    <update id="repaired" parameterType="repairOrder">
+        update repair_order
+        <set>
+            <if test="RepairMethod != null">repair_method = #{RepairMethod},</if>
+            <if test="repairStatus != null">repair_status = #{repairStatus}</if>
+        </set>
+        where repair_id = #{repairId}
+
+    </update>
+    <update id="confirm" parameterType="repairOrder">
+        update repair_order
+        <set>
+            <if test="repairStatus != null">repair_status = #{repairStatus}</if>
+        </set>
+        where repair_id = #{repairId}
+
+    </update>
     <select id="getRepairList" resultMap="RepairOrderResultMap">
         select re.repair_id,re.asset_id,re.user_id,re.user_name,re.repair_date,
         re.description,re.image_url,re.repair_status,re.asset_manager_id,

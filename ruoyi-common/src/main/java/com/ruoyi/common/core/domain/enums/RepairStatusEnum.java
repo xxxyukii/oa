@@ -7,9 +7,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum RepairStatusEnum {
 
-    APPLIED(0, "已申请"),
-    AGREE(1, "维修中"),
-    REJECT(2, "已完成");
+    APPLIED(0, "申请中"),
+    REPAIR(1, "维修中"),
+    REPAIRED(2, "已维修"),
+    CONFIRM(3, "已确认"),
+    CHANGE(4, "已更换"),;
 
     private Integer code;
     private String desc;

@@ -28,4 +28,6 @@ public interface IAssetsService {
     public List<Assets> getAssetByUserId(Long userId);
     /** 修改资产数量 */
     int reduceQuantity(Long assetId);
+
+    int outDepot(Long assetId);
 }
