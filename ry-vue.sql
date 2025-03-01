@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 19/02/2025 12:05:27
+ Date: 01/03/2025 11:43:40
 */
 
 SET NAMES utf8mb4;
@@ -53,16 +53,16 @@ CREATE TABLE `assets`  (
 -- Records of assets
 -- ----------------------------
 INSERT INTO `assets` VALUES (1, 'Laptop A', '0', 'BrandX', 'ModelX1', 'SN0001', '2023-01-01', '2023-02-01', 'BATCH001', 89, 'pcs', 'Office use', '1', 'admin', 103, 'Tokyo Office', 0, 'Y', 'Y', 1, 'admin', '2025-01-20 16:03:20', '2025-02-18 23:43:42');
-INSERT INTO `assets` VALUES (2, 'Monitor B', '1', 'BrandY', 'ModelY1', 'SN0002', '2023-01-02', '2023-02-02', 'BATCH002', 20, 'pcs', 'For staff', '2', 'ry', 106, 'Osaka Branch', 1, 'Y', 'N', 2, 'admin', '2025-01-23 16:53:18', '2025-01-23 16:53:18');
+INSERT INTO `assets` VALUES (2, 'Monitor B', '1', 'BrandY', 'ModelY1', 'SN0002', '2023-01-02', '2023-02-02', 'BATCH002', 20, 'pcs', 'For staff', '2', 'ry', 106, 'Osaka Branch', 1, 'Y', 'N', 2, 'admin', '2025-01-23 16:53:18', '2025-02-27 14:23:06');
 INSERT INTO `assets` VALUES (3, 'Printer C', '2', 'BrandZ', 'ModelZ1', 'SN0003', '2023-01-03', '2023-02-03', 'BATCH003', 5, 'pcs', 'Shared resource', '120', 'Alice', 104, 'Kyoto Office', 1, 'N', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:46:45');
 INSERT INTO `assets` VALUES (4, 'Tablet D', '2', 'BrandX', 'ModelX2', 'SN0004', '2023-01-04', '2023-02-04', 'BATCH004', 15, 'pcs', 'Mobile use', '121', 'Bob', 106, 'Tokyo Office', 1, 'Y', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:46:49');
 INSERT INTO `assets` VALUES (5, 'Chair E', '1', 'BrandW', 'ModelW1', 'SN0005', '2023-01-05', '2023-02-05', 'BATCH005', 47, 'pcs', 'Office furniture', '1', 'admin', 107, 'Osaka Branch', 0, 'Y', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-02-18 15:32:31');
 INSERT INTO `assets` VALUES (6, 'Desk F', '1', 'BrandU', 'ModelU1', 'SN0006', '2023-01-06', '2023-02-06', 'BATCH006', 30, 'pcs', 'Workspaces', '143', 'user001', 104, 'Kyoto Office', 1, 'N', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:47:00');
-INSERT INTO `assets` VALUES (7, 'Server G', '1', 'BrandV', 'ModelV1', 'SN0007', '2023-01-07', '2023-02-07', 'BATCH007', 3, 'units', 'Data center', '144', 'user002', 106, 'Data Center A', 2, 'Y', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:47:04');
+INSERT INTO `assets` VALUES (7, 'Server G', '1', 'BrandV', 'ModelV1', 'SN0007', '2023-01-07', '2023-02-07', 'BATCH007', 10, 'units', 'Data center', '144', 'user002', 106, 'Data Center A', 2, 'Y', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-02-27 14:17:15');
 INSERT INTO `assets` VALUES (8, 'Router H', '1', 'BrandT', 'ModelT1', 'SN0008', '2023-01-08', '2023-02-08', 'BATCH008', 10, 'units', 'Network', '145', 'user003', 104, 'Tokyo Office', 2, 'Y', 'N', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:47:08');
 INSERT INTO `assets` VALUES (9, 'Switch I', '1', 'BrandS', 'ModelS1', 'SN0009', '2023-01-09', '2023-02-09', 'BATCH009', 5, 'units', 'Network', '146', 'user004', 106, 'Data Center B', 1, 'N', 'Y', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:47:14');
 INSERT INTO `assets` VALUES (10, 'Phone J', '2', 'BrandR', 'ModelR1', 'SN0010', '2023-01-10', '2023-02-10', 'BATCH010', 25, 'pcs', 'Staff use', '147', 'user005', 104, 'Osaka Branch', 0, 'N', 'N', 1, NULL, '2025-01-02 15:11:44', '2025-01-23 11:47:18');
-INSERT INTO `assets` VALUES (26, '11', '0', '111', '111', 'XYZELE74004217', '2025-02-19', '2025-02-13', '1111', 1, '台', NULL, NULL, NULL, 105, 'a02', 0, 'N', 'Y', NULL, 'admin', '2025-02-13 15:51:18', '2025-02-13 15:51:18');
+INSERT INTO `assets` VALUES (26, '11', '0', '111', '111', 'XYZELE74004217', '2025-02-19', '2025-02-13', '1111', 10, '台', NULL, NULL, NULL, 105, 'a02', 0, 'N', 'Y', NULL, 'admin', '2025-02-13 15:51:18', '2025-02-27 14:17:18');
 
 -- ----------------------------
 -- Table structure for booking_user
@@ -290,29 +290,30 @@ CREATE TABLE `repair_order`  (
   `user_id` bigint NOT NULL COMMENT '申请人id',
   `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `repair_date` datetime NULL DEFAULT NULL COMMENT '申请日期',
-  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述',
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '描述 故障现象',
   `image_url` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片url',
-  `repair_status` tinyint NULL DEFAULT NULL COMMENT '维修状态',
+  `repair_status` tinyint NULL DEFAULT NULL COMMENT '订单状态 申请-进行中-已完结',
   `asset_manager_id` bigint NULL DEFAULT NULL COMMENT '资产管理人/审批人',
-  `product_change` tinyint NULL DEFAULT NULL COMMENT '是否换新',
+  `product_change` tinyint NULL DEFAULT NULL COMMENT '是否换新/维修操作',
   `created_at` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `repairman` bigint NULL DEFAULT NULL COMMENT '维修人',
+  `repair_method` tinyint NULL DEFAULT NULL COMMENT '状态某个节点 维修方式维修中 已更换',
   PRIMARY KEY (`repair_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of repair_order
 -- ----------------------------
-INSERT INTO `repair_order` VALUES (1, 1, 1, 'admin', NULL, '111', NULL, NULL, NULL, 1, NULL);
-INSERT INTO `repair_order` VALUES (2, 5, 1, 'admin', NULL, '1', NULL, NULL, NULL, 2, NULL);
-INSERT INTO `repair_order` VALUES (3, 5, 1, 'admin', NULL, NULL, NULL, NULL, NULL, 2, NULL);
-INSERT INTO `repair_order` VALUES (4, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/7c544cf8-c9c5-46c2-906a-963d88f5a761.jpg,http://localhost:8080/uploads/b4a97b63-8527-456d-bc03-c3debfca1af2.png,http://localhost:8080/uploads/8601f99b-8c25-41b5-ac25-da09382633b8.png', NULL, NULL, 2, '2025-02-18 22:26:36');
-INSERT INTO `repair_order` VALUES (5, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/7c544cf8-c9c5-46c2-906a-963d88f5a761.jpg,http://localhost:8080/uploads/b4a97b63-8527-456d-bc03-c3debfca1af2.png,http://localhost:8080/uploads/8601f99b-8c25-41b5-ac25-da09382633b8.png', NULL, 1, 2, '2025-02-18 22:27:45');
-INSERT INTO `repair_order` VALUES (6, 1, 1, 'admin', '2025-02-27 00:00:00', 'qqq', 'http://localhost:8080/uploads/6f285bb4-8569-4d01-a354-5255451d1b62.jpg,http://localhost:8080/uploads/e8a2736c-e478-4d98-a170-4e83209ee596.png', NULL, NULL, 2, '2025-02-18 22:28:22');
-INSERT INTO `repair_order` VALUES (7, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/858e85aa-dce5-4528-9cc1-277cc6c05e53.jpg,http://localhost:8080/uploads/a2fb2e32-e68d-4383-92d5-6fb60db605e4.jpg', NULL, NULL, 2, '2025-02-18 22:37:57');
-INSERT INTO `repair_order` VALUES (8, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/fadaf429-c037-4321-9ac5-052f2ecc43d8.jpg,http://localhost:8080/uploads/78f7eecc-d856-4452-bce5-35ceeeba8502.png', NULL, NULL, 2, '2025-02-18 23:34:01');
-INSERT INTO `repair_order` VALUES (9, 1, 1, 'admin', '2025-02-18 00:00:00', NULL, 'http://localhost:8080/uploads/3397e02e-62b4-45d1-9d0c-222d8be158b6.jpg,http://localhost:8080/uploads/572862cf-ddc5-4744-923f-1dffa495ef54.png', NULL, NULL, 2, '2025-02-18 23:36:43');
-INSERT INTO `repair_order` VALUES (10, 1, 1, 'admin', '2025-02-18 00:00:00', NULL, 'http://localhost:8080/uploads/3397e02e-62b4-45d1-9d0c-222d8be158b6.jpg,http://localhost:8080/uploads/572862cf-ddc5-4744-923f-1dffa495ef54.png,http://localhost:8080/uploads/b669c5e0-9f31-42b5-89c3-b41303245d0b.png', NULL, 1, 1, '2025-02-18 23:37:20');
-INSERT INTO `repair_order` VALUES (11, 1, 1, 'admin', '2025-02-25 00:00:00', '111111111111', 'http://localhost:8080/uploads/5abbdf53-ea51-49bd-93fb-e31f07072491.jpg,http://localhost:8080/uploads/e0e96e6f-1d99-41d6-89d3-1566685e0b1e.png', NULL, 1, 1, '2025-02-18 23:43:42');
+INSERT INTO `repair_order` VALUES (4, 1, 1, 'admin', '2025-02-25 00:00:00', '艮艮艮艮艮艮艮艮艮艮根根', 'http://localhost:8080/uploads/7c544cf8-c9c5-46c2-906a-963d88f5a761.jpg,http://localhost:8080/uploads/b4a97b63-8527-456d-bc03-c3debfca1af2.png,http://localhost:8080/uploads/8601f99b-8c25-41b5-ac25-da09382633b8.png', 0, NULL, 2, '2025-02-18 22:26:36', NULL, 1, NULL);
+INSERT INTO `repair_order` VALUES (5, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/7c544cf8-c9c5-46c2-906a-963d88f5a761.jpg,http://localhost:8080/uploads/b4a97b63-8527-456d-bc03-c3debfca1af2.png,http://localhost:8080/uploads/8601f99b-8c25-41b5-ac25-da09382633b8.png', 0, 1, 2, '2025-02-18 22:27:45', NULL, 1, NULL);
+INSERT INTO `repair_order` VALUES (6, 1, 1, 'admin', '2025-02-27 00:00:00', 'qqq', 'http://localhost:8080/uploads/6f285bb4-8569-4d01-a354-5255451d1b62.jpg,http://localhost:8080/uploads/e8a2736c-e478-4d98-a170-4e83209ee596.png', 0, NULL, 2, '2025-02-18 22:28:22', NULL, NULL, NULL);
+INSERT INTO `repair_order` VALUES (7, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/858e85aa-dce5-4528-9cc1-277cc6c05e53.jpg,http://localhost:8080/uploads/a2fb2e32-e68d-4383-92d5-6fb60db605e4.jpg', 0, NULL, 2, '2025-02-18 22:37:57', NULL, 1, NULL);
+INSERT INTO `repair_order` VALUES (8, 1, 1, 'admin', '2025-02-25 00:00:00', NULL, 'http://localhost:8080/uploads/fadaf429-c037-4321-9ac5-052f2ecc43d8.jpg,http://localhost:8080/uploads/78f7eecc-d856-4452-bce5-35ceeeba8502.png', 0, NULL, 2, '2025-02-18 23:34:01', NULL, NULL, NULL);
+INSERT INTO `repair_order` VALUES (9, 1, 1, 'admin', '2025-02-18 00:00:00', NULL, 'http://localhost:8080/uploads/3397e02e-62b4-45d1-9d0c-222d8be158b6.jpg,http://localhost:8080/uploads/572862cf-ddc5-4744-923f-1dffa495ef54.png', 1, NULL, 2, '2025-02-18 23:36:43', NULL, 1, NULL);
+INSERT INTO `repair_order` VALUES (12, 2, 2, 'ry', '2025-02-27 00:00:00', 'aaaaaaaaa', NULL, 1, 2, 1, '2025-02-24 17:21:13', NULL, 1, NULL);
+INSERT INTO `repair_order` VALUES (13, 2, 2, 'ry', '2025-02-27 00:00:00', '哈哈哈哈哈哈哈哈', NULL, 0, 2, 1, '2025-02-24 17:22:38', NULL, NULL, NULL);
+INSERT INTO `repair_order` VALUES (14, 2, 2, 'ry', '2025-02-27 00:00:00', '11111', 'http://localhost:8080/uploads/1e34ec2b-4ca7-4bee-8d86-5eb552f8d182.png', 0, NULL, 2, '2025-02-24 17:23:37', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_attendance
@@ -328,7 +329,7 @@ CREATE TABLE `sys_attendance`  (
   `pm_time` datetime NULL DEFAULT NULL COMMENT '下班打卡',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`att_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5324 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5400 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_attendance
@@ -3847,6 +3848,82 @@ INSERT INTO `sys_attendance` VALUES (5320, 161, 104, 'user019', '2024-11-19', NU
 INSERT INTO `sys_attendance` VALUES (5321, 162, 106, 'user020', '2024-11-19', NULL, NULL, NULL);
 INSERT INTO `sys_attendance` VALUES (5322, 163, 103, 'tiffany', '2024-11-19', NULL, NULL, NULL);
 INSERT INTO `sys_attendance` VALUES (5323, 164, 101, 'ceooo', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5324, 1, 103, 'admin', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5325, 2, 105, 'ry', '2024-11-19', '2024-11-19 08:18:09', NULL, '上班');
+INSERT INTO `sys_attendance` VALUES (5326, 120, 109, 'Alice', '2024-11-19', '2024-11-19 18:40:18', '2024-11-19 23:20:10', NULL);
+INSERT INTO `sys_attendance` VALUES (5327, 121, 106, 'Bob', '2024-11-19', '2024-11-19 09:20:19', '2024-11-19 18:01:17', NULL);
+INSERT INTO `sys_attendance` VALUES (5328, 122, 107, 'Charlie', '2024-11-19', NULL, '2024-11-19 19:21:33', '下班');
+INSERT INTO `sys_attendance` VALUES (5329, 143, 104, 'user001', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5330, 144, 106, 'user002', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5331, 145, 104, 'user003', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5332, 146, 106, 'user004', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5333, 147, 104, 'user005', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5334, 148, 106, 'user006', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5335, 149, 104, 'user007', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5336, 150, 106, 'user008', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5337, 159, 104, 'user017', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5338, 160, 106, 'user018', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5339, 161, 104, 'user019', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5340, 162, 106, 'user020', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5341, 163, 103, 'tiffany', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5342, 164, 101, 'ceooo', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5343, 1, 103, 'admin', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5344, 2, 105, 'ry', '2024-11-19', '2024-11-19 08:18:09', NULL, '上班');
+INSERT INTO `sys_attendance` VALUES (5345, 120, 109, 'Alice', '2024-11-19', '2024-11-19 18:40:18', '2024-11-19 23:20:10', NULL);
+INSERT INTO `sys_attendance` VALUES (5346, 121, 106, 'Bob', '2024-11-19', '2024-11-19 09:20:19', '2024-11-19 18:01:17', NULL);
+INSERT INTO `sys_attendance` VALUES (5347, 122, 107, 'Charlie', '2024-11-19', NULL, '2024-11-19 19:21:33', '下班');
+INSERT INTO `sys_attendance` VALUES (5348, 143, 104, 'user001', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5349, 144, 106, 'user002', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5350, 145, 104, 'user003', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5351, 146, 106, 'user004', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5352, 147, 104, 'user005', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5353, 148, 106, 'user006', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5354, 149, 104, 'user007', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5355, 150, 106, 'user008', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5356, 159, 104, 'user017', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5357, 160, 106, 'user018', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5358, 161, 104, 'user019', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5359, 162, 106, 'user020', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5360, 163, 103, 'tiffany', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5361, 164, 101, 'ceooo', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5362, 1, 103, 'admin', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5363, 2, 105, 'ry', '2024-11-19', '2024-11-19 08:18:09', NULL, '上班');
+INSERT INTO `sys_attendance` VALUES (5364, 120, 109, 'Alice', '2024-11-19', '2024-11-19 18:40:18', '2024-11-19 23:20:10', NULL);
+INSERT INTO `sys_attendance` VALUES (5365, 121, 106, 'Bob', '2024-11-19', '2024-11-19 09:20:19', '2024-11-19 18:01:17', NULL);
+INSERT INTO `sys_attendance` VALUES (5366, 122, 107, 'Charlie', '2024-11-19', NULL, '2024-11-19 19:21:33', '下班');
+INSERT INTO `sys_attendance` VALUES (5367, 143, 104, 'user001', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5368, 144, 106, 'user002', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5369, 145, 104, 'user003', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5370, 146, 106, 'user004', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5371, 147, 104, 'user005', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5372, 148, 106, 'user006', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5373, 149, 104, 'user007', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5374, 150, 106, 'user008', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5375, 159, 104, 'user017', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5376, 160, 106, 'user018', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5377, 161, 104, 'user019', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5378, 162, 106, 'user020', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5379, 163, 103, 'tiffany', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5380, 164, 101, 'ceooo', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5381, 1, 103, 'admin', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5382, 2, 105, 'ry', '2024-11-19', '2024-11-19 08:18:09', NULL, '上班');
+INSERT INTO `sys_attendance` VALUES (5383, 120, 109, 'Alice', '2024-11-19', '2024-11-19 18:40:18', '2024-11-19 23:20:10', NULL);
+INSERT INTO `sys_attendance` VALUES (5384, 121, 106, 'Bob', '2024-11-19', '2024-11-19 09:20:19', '2024-11-19 18:01:17', NULL);
+INSERT INTO `sys_attendance` VALUES (5385, 122, 107, 'Charlie', '2024-11-19', NULL, '2024-11-19 19:21:33', '下班');
+INSERT INTO `sys_attendance` VALUES (5386, 143, 104, 'user001', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5387, 144, 106, 'user002', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5388, 145, 104, 'user003', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5389, 146, 106, 'user004', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5390, 147, 104, 'user005', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5391, 148, 106, 'user006', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5392, 149, 104, 'user007', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5393, 150, 106, 'user008', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5394, 159, 104, 'user017', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5395, 160, 106, 'user018', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5396, 161, 104, 'user019', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5397, 162, 106, 'user020', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5398, 163, 103, 'tiffany', '2024-11-19', NULL, NULL, NULL);
+INSERT INTO `sys_attendance` VALUES (5399, 164, 101, 'ceooo', '2024-11-19', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_attendance_record
@@ -3859,7 +3936,7 @@ CREATE TABLE `sys_attendance_record`  (
   `check_time` datetime NULL DEFAULT NULL COMMENT '打卡时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 66 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_attendance_record
@@ -3921,6 +3998,7 @@ INSERT INTO `sys_attendance_record` VALUES (62, 1, NULL, '2025-02-11 10:30:12', 
 INSERT INTO `sys_attendance_record` VALUES (63, 1, NULL, '2025-02-11 10:30:21', NULL);
 INSERT INTO `sys_attendance_record` VALUES (64, 2, NULL, '2025-02-14 09:27:53', NULL);
 INSERT INTO `sys_attendance_record` VALUES (65, 163, NULL, '2025-02-14 09:43:12', NULL);
+INSERT INTO `sys_attendance_record` VALUES (66, 1, NULL, '2025-02-26 17:34:42', NULL);
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -4147,7 +4225,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 644 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 697 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -4696,6 +4774,59 @@ INSERT INTO `sys_logininfor` VALUES (640, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (641, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-18 17:17:10');
 INSERT INTO `sys_logininfor` VALUES (642, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-18 21:46:18');
 INSERT INTO `sys_logininfor` VALUES (643, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-19 10:00:54');
+INSERT INTO `sys_logininfor` VALUES (644, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码已失效', '2025-02-22 18:30:48');
+INSERT INTO `sys_logininfor` VALUES (645, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码错误', '2025-02-22 18:30:51');
+INSERT INTO `sys_logininfor` VALUES (646, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-22 18:30:59');
+INSERT INTO `sys_logininfor` VALUES (647, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 09:21:10');
+INSERT INTO `sys_logininfor` VALUES (648, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 09:56:51');
+INSERT INTO `sys_logininfor` VALUES (649, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 10:56:40');
+INSERT INTO `sys_logininfor` VALUES (650, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码已失效', '2025-02-24 13:23:02');
+INSERT INTO `sys_logininfor` VALUES (651, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 13:23:05');
+INSERT INTO `sys_logininfor` VALUES (652, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 14:35:09');
+INSERT INTO `sys_logininfor` VALUES (653, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 16:45:06');
+INSERT INTO `sys_logininfor` VALUES (654, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-24 17:20:31');
+INSERT INTO `sys_logininfor` VALUES (655, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 17:20:39');
+INSERT INTO `sys_logininfor` VALUES (656, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-24 17:33:24');
+INSERT INTO `sys_logininfor` VALUES (657, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 17:33:32');
+INSERT INTO `sys_logininfor` VALUES (658, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 20:22:34');
+INSERT INTO `sys_logininfor` VALUES (659, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-24 21:48:06');
+INSERT INTO `sys_logininfor` VALUES (660, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-25 11:03:29');
+INSERT INTO `sys_logininfor` VALUES (661, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-25 15:22:53');
+INSERT INTO `sys_logininfor` VALUES (662, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码已失效', '2025-02-25 17:13:20');
+INSERT INTO `sys_logininfor` VALUES (663, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-25 17:13:25');
+INSERT INTO `sys_logininfor` VALUES (664, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-25 22:18:03');
+INSERT INTO `sys_logininfor` VALUES (665, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-25 23:38:51');
+INSERT INTO `sys_logininfor` VALUES (666, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 09:28:31');
+INSERT INTO `sys_logininfor` VALUES (667, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 09:28:47');
+INSERT INTO `sys_logininfor` VALUES (668, 'tiffany', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 09:28:57');
+INSERT INTO `sys_logininfor` VALUES (669, 'tiffany', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 09:39:40');
+INSERT INTO `sys_logininfor` VALUES (670, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 09:39:48');
+INSERT INTO `sys_logininfor` VALUES (671, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 10:59:30');
+INSERT INTO `sys_logininfor` VALUES (672, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 10:59:35');
+INSERT INTO `sys_logininfor` VALUES (673, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 10:59:42');
+INSERT INTO `sys_logininfor` VALUES (674, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 11:00:01');
+INSERT INTO `sys_logininfor` VALUES (675, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码错误', '2025-02-26 11:00:06');
+INSERT INTO `sys_logininfor` VALUES (676, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 11:00:14');
+INSERT INTO `sys_logininfor` VALUES (677, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 11:08:36');
+INSERT INTO `sys_logininfor` VALUES (678, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 11:08:46');
+INSERT INTO `sys_logininfor` VALUES (679, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-26 11:08:56');
+INSERT INTO `sys_logininfor` VALUES (680, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 11:09:04');
+INSERT INTO `sys_logininfor` VALUES (681, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 13:36:05');
+INSERT INTO `sys_logininfor` VALUES (682, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 15:48:27');
+INSERT INTO `sys_logininfor` VALUES (683, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 16:46:03');
+INSERT INTO `sys_logininfor` VALUES (684, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 20:32:39');
+INSERT INTO `sys_logininfor` VALUES (685, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-26 22:33:24');
+INSERT INTO `sys_logininfor` VALUES (686, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-27 09:18:31');
+INSERT INTO `sys_logininfor` VALUES (687, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-27 09:56:06');
+INSERT INTO `sys_logininfor` VALUES (688, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-27 11:24:25');
+INSERT INTO `sys_logininfor` VALUES (689, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-27 13:57:33');
+INSERT INTO `sys_logininfor` VALUES (690, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '1', '验证码已失效', '2025-02-28 13:51:00');
+INSERT INTO `sys_logininfor` VALUES (691, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-28 13:51:04');
+INSERT INTO `sys_logininfor` VALUES (692, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-28 14:27:29');
+INSERT INTO `sys_logininfor` VALUES (693, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-28 14:27:35');
+INSERT INTO `sys_logininfor` VALUES (694, 'ry', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '退出成功', '2025-02-28 14:45:52');
+INSERT INTO `sys_logininfor` VALUES (695, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-02-28 14:45:57');
+INSERT INTO `sys_logininfor` VALUES (696, 'admin', '127.0.0.1', '内网IP', 'Chrome 13', 'Windows 10', '0', '登录成功', '2025-03-01 00:30:33');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -4814,9 +4945,9 @@ INSERT INTO `sys_menu` VALUES (1058, '导入代码', 116, 4, '#', '', '', '', 1,
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 116, 5, '#', '', '', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2024-10-23 10:16:40', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 116, 6, '#', '', '', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2024-10-23 10:16:40', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2000, 'test', 0, 8, '/', NULL, NULL, '', 1, 0, 'M', '0', '0', '', '404', 'admin', '2024-10-23 14:29:36', 'admin', '2024-10-23 15:11:08', '');
-INSERT INTO `sys_menu` VALUES (2002, '考勤记录', 1, 2, 'attendance', 'system/attendance/index', NULL, '', 1, 0, 'C', '0', '0', 'system:attendance:list', 'time', 'admin', '2024-11-07 10:53:57', 'admin', '2024-12-31 16:17:27', '');
-INSERT INTO `sys_menu` VALUES (2003, '会议室信息', 1, 3, 'meeting', 'system/meeting/index', NULL, '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-11-27 14:46:24', 'admin', '2024-11-28 17:25:35', '');
-INSERT INTO `sys_menu` VALUES (2006, '会议管理', 1, 3, 'meeting/booking', 'system/meeting/booking', NULL, '', 1, 0, 'C', '0', '0', '', 'build', 'admin', '2024-11-28 17:24:23', 'admin', '2024-11-28 17:26:58', '');
+INSERT INTO `sys_menu` VALUES (2002, '考勤记录', 1, 1, 'attendance', 'system/attendance/index', NULL, '', 1, 0, 'C', '0', '0', 'system:attendance:list', 'time', 'admin', '2024-11-07 10:53:57', 'admin', '2025-02-22 19:00:52', '');
+INSERT INTO `sys_menu` VALUES (2003, '会议室信息', 1, 2, 'meeting', 'system/meeting/index', NULL, '', 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-11-27 14:46:24', 'admin', '2025-02-22 19:00:01', '');
+INSERT INTO `sys_menu` VALUES (2006, '会议管理', 1, 2, 'meeting/booking', 'system/meeting/booking', NULL, '', 1, 0, 'C', '0', '0', '', 'build', 'admin', '2024-11-28 17:24:23', 'admin', '2025-02-22 18:59:52', '');
 INSERT INTO `sys_menu` VALUES (2007, '导出', 2002, 1, '', NULL, NULL, '', 1, 0, 'F', '0', '0', 'system:attendance:export', '#', 'admin', '2024-12-21 21:20:08', 'admin', '2024-12-21 21:26:08', '');
 INSERT INTO `sys_menu` VALUES (2008, '导入', 2002, 2, '', NULL, NULL, '', 1, 0, 'F', '0', '0', 'system:attendance:import', '#', 'admin', '2024-12-21 21:25:58', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2009, '资产管理', 1, 2, 'asset', 'system/asset/index', NULL, '', 1, 0, 'C', '0', '0', 'system:asset:list', 'money', 'admin', '2025-01-03 10:44:29', 'admin', '2025-01-24 15:18:57', '');
@@ -4872,7 +5003,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 254 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 257 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -5031,6 +5162,9 @@ INSERT INTO `sys_oper_log` VALUES (250, '资产管理', 1, 'com.ruoyi.web.contro
 INSERT INTO `sys_oper_log` VALUES (251, '用户管理', 2, 'com.ruoyi.web.controller.system.SysUserController.edit()', 'PUT', 1, 'tiffany', '研发部门', '/system/user', '127.0.0.1', '内网IP', '{\"address\":\"江苏省南京市秦淮区中华路198号博爱小区3幢405室\",\"admin\":false,\"avatar\":\"\",\"birthday\":\"1991-02-01 00:00:00\",\"createBy\":\"admin\",\"createTime\":\"2024-10-02 09:00:00\",\"delFlag\":\"0\",\"dept\":{\"ancestors\":\"0,100,101\",\"children\":[],\"deptId\":106,\"deptName\":\"财务部门\",\"leader\":\"若依\",\"orderNum\":4,\"params\":{},\"parentId\":101,\"status\":\"0\"},\"deptId\":106,\"deptName\":\"财务部门\",\"email\":\"bob@example.com\",\"loginDate\":\"2024-10-02 09:00:00\",\"loginIp\":\"192.168.1.2\",\"nickName\":\"user02\",\"params\":{},\"phonenumber\":\"15923456789\",\"postIds\":[],\"remark\":\"Remark for Bob\",\"roleIds\":[2],\"roles\":[],\"sex\":\"1\",\"startDate\":\"2022-02-01 00:00:00\",\"status\":\"0\",\"updateBy\":\"tiffany\",\"userId\":121,\"userName\":\"Bob\",\"workId\":\"W002\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-13 14:26:23', 392);
 INSERT INTO `sys_oper_log` VALUES (252, '资产管理', 1, 'com.ruoyi.web.controller.system.AssetsController.add()', 'POST', 1, 'admin', '研发部门', '/system/assets/add', '127.0.0.1', '内网IP', '{\"assetManagerId\":1,\"assetManagerName\":\"admin\",\"assetName\":\"111\",\"deptId\":109,\"location\":\"111111\",\"quantity\":1,\"snNumber\":\"XYZOTH04475545\",\"status\":0,\"unit\":\"台\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-14 06:44:15', 126);
 INSERT INTO `sys_oper_log` VALUES (253, '用户管理', 2, 'com.ruoyi.web.controller.system.SysUserController.changeStatus()', 'PUT', 1, 'admin', '研发部门', '/system/user/changeStatus', '127.0.0.1', '内网IP', '{\"admin\":false,\"params\":{},\"status\":\"1\",\"updateBy\":\"admin\",\"userId\":164}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-14 07:55:18', 25);
+INSERT INTO `sys_oper_log` VALUES (254, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"system/meeting/booking\",\"createTime\":\"2024-11-28 17:24:23\",\"icon\":\"build\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2006,\"menuName\":\"会议管理\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":1,\"path\":\"meeting/booking\",\"perms\":\"\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-22 18:59:52', 126);
+INSERT INTO `sys_oper_log` VALUES (255, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"system/meeting/index\",\"createTime\":\"2024-11-27 14:46:24\",\"icon\":\"monitor\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2003,\"menuName\":\"会议室信息\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":1,\"path\":\"meeting\",\"perms\":\"\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-22 19:00:01', 41);
+INSERT INTO `sys_oper_log` VALUES (256, '菜单管理', 2, 'com.ruoyi.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"system/attendance/index\",\"createTime\":\"2024-11-07 10:53:57\",\"icon\":\"time\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2002,\"menuName\":\"考勤记录\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":1,\"path\":\"attendance\",\"perms\":\"system:attendance:list\",\"routeName\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-02-22 19:00:52', 37);
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -5085,7 +5219,7 @@ CREATE TABLE `sys_role`  (
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2024-10-23 10:16:39', '', NULL, '超级管理员');
 INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '1', 1, 1, '0', '0', 'admin', '2024-10-23 10:16:39', 'admin', '2025-02-13 02:09:28', '普通角色');
-INSERT INTO `sys_role` VALUES (100, 'test', '4', 4, '1', 1, 1, '0', '0', 'admin', '2024-12-21 21:12:09', '', NULL, NULL);
+INSERT INTO `sys_role` VALUES (100, '维修人员', 'repair', 3, '1', 1, 1, '0', '0', 'admin', '2024-12-21 21:12:09', '', NULL, '维修人');
 
 -- ----------------------------
 -- Table structure for sys_role_dept
@@ -5242,8 +5376,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '/profile/avatar/2024/11/28/avatar_20241128103322A002.png', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-02-19 10:00:58', 'admin', '2024-10-23 10:16:39', '', '2025-02-19 10:00:54', '管理员', '', NULL, NULL, NULL, NULL);
-INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '/profile/avatar/2024/12/13/11_20241213203853A002.jpg', '$2a$10$sRuukOFHlfIdFEFIt7r9ouaqnVxKKppo7IyKN9n3iNUdwWS45SCPW', '0', '0', '127.0.0.1', '2025-02-14 09:41:44', 'admin', '2024-10-23 10:16:39', 'admin', '2025-02-14 01:41:40', '测试员', '', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '/profile/avatar/2024/11/28/avatar_20241128103322A002.png', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-03-01 00:30:36', 'admin', '2024-10-23 10:16:39', '', '2025-03-01 00:30:33', '管理员', '', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '/profile/avatar/2024/12/13/11_20241213203853A002.jpg', '$2a$10$sRuukOFHlfIdFEFIt7r9ouaqnVxKKppo7IyKN9n3iNUdwWS45SCPW', '0', '0', '127.0.0.1', '2025-02-28 14:27:37', 'admin', '2024-10-23 10:16:39', 'admin', '2025-02-28 14:27:35', '测试员', '', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_user` VALUES (120, 109, 'Alice', 'user01', '00', 'alice@example.com', '13612345678', '0', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '192.168.1.1', '2024-10-01 08:00:00', 'admin', '2024-10-01 08:00:00', 'admin', '2025-01-23 16:40:22', 'Remark for Alice', 'W001', '浙江省杭州市萧山区山阴路965号家联公寓2幢703室', '1990-01-01', '2022-01-01', NULL);
 INSERT INTO `sys_user` VALUES (121, 106, 'Bob', 'user02', '00', 'bob@example.com', '15923456789', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '192.168.1.2', '2024-10-02 09:00:00', 'admin', '2024-10-02 09:00:00', 'tiffany', '2025-02-13 14:26:23', 'Remark for Bob', 'W002', '江苏省南京市秦淮区中华路198号博爱小区3幢405室', '1991-02-01', '2022-02-01', NULL);
 INSERT INTO `sys_user` VALUES (122, 107, 'Charlie', 'user03', '00', 'charlie@example.com', '13634567890', '0', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '192.168.1.3', '2024-10-03 10:00:00', 'admin', '2024-10-03 10:00:00', 'admin', '2024-12-06 17:47:07', 'Remark for Charlie', 'W003', '上海市浦东新区张杨路855号海富公寓1幢201室', '1992-03-01', '2022-03-01', NULL);
@@ -5259,7 +5393,7 @@ INSERT INTO `sys_user` VALUES (159, 104, 'user017', 'Nick017', '00', 'user017@ex
 INSERT INTO `sys_user` VALUES (160, 106, 'user018', 'Nick018', '00', 'user018@example.com', '12345678918', '2', '', 'password018', '0', '0', '192.168.1.18', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'Remark 18', 'WID018', 'Address 18', '1990-06-18', '2023-01-18', NULL);
 INSERT INTO `sys_user` VALUES (161, 104, 'user019', 'Nick019', '00', 'user019@example.com', '12345678919', '0', '', 'password019', '0', '2', '192.168.1.19', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'Remark 19', 'WID019', 'Address 19', '1990-07-19', '2023-01-19', NULL);
 INSERT INTO `sys_user` VALUES (162, 106, 'user020', 'Nick020', '00', 'user020@example.com', '12345678920', '1', '', 'password020', '0', '0', '192.168.1.20', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'admin', '2024-12-15 01:13:29', 'Remark 20', 'WID020', 'Address 20', '1990-08-20', '2023-01-20', NULL);
-INSERT INTO `sys_user` VALUES (163, 103, 'tiffany', 'fa', '00', 'fafafa@gmail.com', '18888888888', '1', '/profile/avatar/2024/12/18/1111 (2)_20241218093551A001.jpg', '$2a$10$sdK0Y6Ll7Zk2aSKAm.JzmOm6XeaNraFggT.hY2ZlvKTAnk2EaTxFK', '0', '0', '127.0.0.1', '2025-02-16 21:54:40', 'admin', '2024-12-18 09:29:34', '', '2025-02-16 21:54:39', '娄山关路', 'WID021', '上海市/市辖区/长宁区', NULL, '2024-12-01', NULL);
+INSERT INTO `sys_user` VALUES (163, 103, 'tiffany', 'fa', '00', 'fafafa@gmail.com', '18888888888', '1', '/profile/avatar/2024/12/18/1111 (2)_20241218093551A001.jpg', '$2a$10$sdK0Y6Ll7Zk2aSKAm.JzmOm6XeaNraFggT.hY2ZlvKTAnk2EaTxFK', '0', '0', '127.0.0.1', '2025-02-26 09:29:00', 'admin', '2024-12-18 09:29:34', '', '2025-02-26 09:28:57', '娄山关路', 'WID021', '上海市/市辖区/长宁区', NULL, '2024-12-01', NULL);
 INSERT INTO `sys_user` VALUES (164, 101, 'ceooo', '富婆', '00', 'youqian@example.com', '18868686868', '0', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '1', '0', '', NULL, '', NULL, 'admin', '2025-02-14 07:55:18', NULL, 'WID022', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
